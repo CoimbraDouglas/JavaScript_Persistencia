@@ -20,7 +20,8 @@ import com.example.demo.services.DepartamentServices;
 public class DepartamentController {
     @Autowired
     private DepartamentServices departmentService;
-@GetMapping
+    
+    @GetMapping
     public List<Departament> getAllDepartments() {
         // Chama o serviço para buscar todos os departamentos
         return departmentService.findAll();
@@ -37,7 +38,7 @@ public class DepartamentController {
         return departmentService.save(department);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Departament> updateDepartment(@PathVariable Long id, @RequestBody Departament departmentDetails) {
+    public ResponseEntity<Departament> updateDepartament(@PathVariable Long id, @RequestBody Departament departmentDetails) {
         Optional<Departament> department = departmentService.findById(id);
         if (department.isPresent()) {
             Departament updatedDepartment = department.get();
@@ -48,7 +49,7 @@ public class DepartamentController {
         }
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDepartment(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDepartament(@PathVariable Long id) {
         departmentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
